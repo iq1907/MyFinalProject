@@ -27,7 +27,7 @@ namespace ConsoleUI
             }
             return list;
         }
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
 
             string vConnStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
