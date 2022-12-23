@@ -15,8 +15,37 @@ namespace ConsoleUI
 
         static void Main(string[] args)
         {
+
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+
+            foreach (var c in categoryManager.GetAll())
+            {
+                Console.WriteLine(c.CategoryId + " " + c.CategoryName);
+            }
+            
+            
+        }
+
+        private static void OrderConsole()
+        {
+            OrderManager orderManager = new OrderManager(new EfOrderDal()); 
+
+            foreach (var order in orderManager.GetAll())
+            {
+                Console.WriteLine(order.CustomerId + " " + order.OrderId + " " + order.ShipCity);
+            }
+
+            foreach (var order in orderManager.GetAllByCustomerId("hanar"))
+            {
+                Console.WriteLine(order.CustomerId + " " + order.OrderId + " " + order.ShipCity);
+            }
+            
+        }
+
+        private static void ProductConsole()
+        {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetByUnitPrice(40,50))
+            foreach (var product in productManager.GetByUnitPrice(40, 50))
             {
                 Console.WriteLine(product.ProductName);
             }
