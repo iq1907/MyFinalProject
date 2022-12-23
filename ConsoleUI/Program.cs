@@ -22,8 +22,11 @@ namespace ConsoleUI
             {
                 Console.WriteLine(c.CategoryId + " " + c.CategoryName);
             }
-            
-            
+
+            var category1 = categoryManager.GetByCategoryId(1);
+            Console.WriteLine("filter ID " + category1.CategoryId + " " + category1.CategoryName);
+
+
         }
 
         private static void OrderConsole()
