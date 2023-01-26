@@ -15,7 +15,22 @@ namespace ConsoleUI
 
         static void Main(string[] args)
         {
+            //CategoryConsole();
 
+            ProductManager productManager = new ProductManager(new EfProductDal());
+            var result = productManager.GetProductDetails();
+
+            Console.WriteLine(result.Success + " " + result.Message);
+
+            foreach (var productDto in result.Data)
+            {
+                Console.WriteLine(productDto.ProductName + " " + productDto.CategoryName);
+            }
+
+        }
+
+        private static void CategoryConsole()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
             foreach (var c in categoryManager.GetAll())
@@ -25,8 +40,6 @@ namespace ConsoleUI
 
             var category1 = categoryManager.GetByCategoryId(1);
             Console.WriteLine("filter ID " + category1.CategoryId + " " + category1.CategoryName);
-
-
         }
 
         private static void OrderConsole()
@@ -48,12 +61,13 @@ namespace ConsoleUI
         private static void ProductConsole()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetByUnitPrice(40, 50))
+
+            foreach (var product in productManager.GetByUnitPrice(40, 50).Data)
             {
                 Console.WriteLine(product.ProductName);
             }
 
-            foreach (var product in productManager.GetByUnitPrice(40, 50))
+            foreach (var product in productManager.GetByUnitPrice(40, 50).Data)
             {
                 Console.WriteLine(product.ProductName);
             }
