@@ -33,14 +33,13 @@ namespace Business.Concrete
 
         public IDataResult<Product> Get(int id)
         {
-            return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductId == id), "");
-                
+            return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductId == id));
                 
         }
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 01)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
